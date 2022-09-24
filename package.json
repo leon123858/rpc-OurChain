@@ -1,0 +1,46 @@
+{
+  "name": "rpc-ourchain",
+  "version": "0.0.1",
+  "description": "A TypeScript library to make RPC and HTTP REST requests to OurChain",
+  "main": "build/index.js",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=10.19.0"
+  },
+  "types": "build/index.d.ts",
+  "scripts": {
+    "build": "rm -fr build && tsc",
+    "prettier": "prettier --write .",
+    "test": "mocha -r ts-node/register --full-trace --ui tdd --bail --extension ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leon123858/rpc-OurChain"
+  },
+  "keywords": [
+    "RPC",
+    "Bitcoin",
+    "OurChain"
+  ],
+  "author": "Leon Lin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/leon123858/rpc-OurChain/issues"
+  },
+  "homepage": "https://github.com/leon123858/rpc-OurChain#readme",
+  "devDependencies": {
+    "@types/mocha": "^7.0.2",
+    "@typescript-eslint/eslint-plugin": "^2.25.0",
+    "@typescript-eslint/parser": "^2.25.0",
+    "eslint": "^6.8.0",
+    "husky": "^4.2.3",
+    "mocha": "^7.1.1",
+    "nock": "^12.0.3",
+    "prettier": "^2.7.1",
+    "ts-node": "^8.8.1",
+    "typescript": "^3.8.3"
+  },
+  "dependencies": {
+    "rpc-request": "^4.0.9"
+  }
+}
