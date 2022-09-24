@@ -415,11 +415,26 @@ export class RPCClient extends RESTClient {
       const response = await this.batch(body, uri);
       return this.fullResponse ? response : response.result;
     } catch (error) {
-      if (error.error && error.error.error && error.error.result === null) {
-        throw this.fullResponse ? error.error : error.error.error;
+      const err: any = error;
+      if (err.error && err.error.error && err.error.result === null) {
+        throw this.fullResponse ? err.error : err.error.error;
       }
       throw error;
     }
+  }
+
+  /**
+   * @description Returns the obj contain contract address in the block
+   */
+  deploycontract(contractPath: string) {
+    return this.rpc("deploycontract", [contractPath]);
+  }
+
+  /**
+   * @description execute contract in block
+   */
+  callcontract(contractAddress: string, args: string[]) {
+    return this.rpc("callcontract", [contractAddress, ...args]);
   }
 
   /**

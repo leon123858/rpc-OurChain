@@ -14,7 +14,29 @@ const id = "rpc-bitcoin";
 const jsonrpc = 1.0;
 const error = null;
 
-suite("RPCClient", () => {
+suite("Real RPC Client for outChain Special functions", function () {
+  this.timeout(5000);
+  const port = 12345;
+  const timeout = 12345;
+  const user = "rpcuser";
+  const pass = "rpcpassword";
+  const url = "http://www.example.com";
+  const fullResponse = true;
+  const options = { user, port, pass, timeout, url, fullResponse };
+  const client = new RPCClient(options);
+  test(".deploycontract", async () => {
+    const contractPath = "testPath";
+    const result = await client.deploycontract(contractPath);
+    console.log(result);
+  });
+  test(".callcontract", async () => {
+    const contractAddress = "testAddress";
+    const result = await client.callcontract(contractAddress, []);
+    console.log(result);
+  });
+});
+
+suite.skip("RPCClient", () => {
   suiteSetup(() => nock.cleanAll());
 
   test(".constructor()", () => {

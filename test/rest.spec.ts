@@ -6,7 +6,7 @@ const port = 18332;
 const timeout = 20000;
 const client = new RESTClient({ port, timeout });
 
-suite("RESTClient", () => {
+suite.skip("RESTClient", () => {
   suiteSetup(() => {
     nock.cleanAll();
     nock.load("./test/mocks/rest.json");
