@@ -14,7 +14,7 @@ const id = "rpc-bitcoin";
 const jsonrpc = 1.0;
 const error = null;
 
-suite("Real RPC Client for outChain Special functions", function () {
+suite.skip("Real RPC Client for outChain Special functions", function () {
   this.timeout(5000);
   const port = 12345;
   const timeout = 12345;
@@ -36,7 +36,7 @@ suite("Real RPC Client for outChain Special functions", function () {
   });
 });
 
-suite.skip("RPCClient", () => {
+suite("RPCClient", () => {
   suiteSetup(() => nock.cleanAll());
 
   test(".constructor()", () => {
@@ -180,6 +180,48 @@ suite.skip("RPCClient", () => {
     } catch (err) {
       assert.deepStrictEqual(err, response);
     }
+  });
+
+  suite("Contract", () => {
+    test(".deploycontract()", async () => {
+      const request = {
+        params: ["testPath"],
+        method: "deploycontract",
+        id,
+        jsonrpc,
+      };
+      const result = {
+        txid: "testId",
+        "contract address": ["testAddress"],
+      };
+      nock(uri)
+        .post("/", request)
+        .times(1)
+        .basicAuth(auth)
+        .reply(200, { result, error, id });
+      const data = await client.deploycontract("testPath");
+      assert.deepStrictEqual(data, result);
+    });
+    test(".callcontract()", async () => {
+      const request = {
+        params: ["testAddress", "aaa", "bbb", "ccc"],
+        method: "callcontract",
+        id,
+        jsonrpc,
+      };
+      const result = "returnForContract";
+      nock(uri)
+        .post("/", request)
+        .times(1)
+        .basicAuth(auth)
+        .reply(200, { result, error, id });
+      const data = await client.callcontract("testAddress", [
+        "aaa",
+        "bbb",
+        "ccc",
+      ]);
+      assert.deepStrictEqual(data, result);
+    });
   });
 
   suite("Blockchain", () => {

@@ -34,6 +34,18 @@ const response = await client.batch([
 
 ### Blockchain
 
+- [`deploycontract`](https://hackmd.io/Bo8C0LogQfmq_eSuOExr0w?view)
+
+```javascript
+const data = await client.deploycontract("testPath");
+```
+
+- [`callcontract`](https://hackmd.io/Bo8C0LogQfmq_eSuOExr0w?view)
+
+```javascript
+const data = await client.callcontract("testAddress", ["aaa", "bbb", "ccc"]);
+```
+
 - [`getbestblockhash`](https://bitcoin.org/en/developer-reference#getbestblockhash)
 
 ```javascript
