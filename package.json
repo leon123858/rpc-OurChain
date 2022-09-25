@@ -9,6 +9,7 @@
   },
   "types": "build/index.d.ts",
   "scripts": {
+    "deploy": "yarn prettier && yarn test && npm publish",
     "build": "rm -fr build && tsc",
     "prettier": "prettier --write .",
     "test": "mocha -r ts-node/register --full-trace --ui tdd --bail --extension ts"
