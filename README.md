@@ -13,7 +13,7 @@ npm install
 ## [RPC](https://bitcoin.org/en/developer-reference#remote-procedure-calls-rpcs)
 
 ```javascript
-const { RPCClient } = require("rpc-bitcoin");
+const { RPCClient } = require("rpc-ourchain");
 const url = "http://192.168.0.10";
 const user = "rpcuser";
 const pass = "rpcpassword";
@@ -35,15 +35,20 @@ const response = await client.batch([
 ### Blockchain
 
 - [`deploycontract`](https://hackmd.io/Bo8C0LogQfmq_eSuOExr0w?view)
+  more information can read jsdoc for this method
 
 ```javascript
 const data = await client.deploycontract("testPath");
+const data = await client.deploycontract("testPath", [...ArgsForInitContract]);
 ```
 
 - [`callcontract`](https://hackmd.io/Bo8C0LogQfmq_eSuOExr0w?view)
+  more information can read jsdoc for this method
 
 ```javascript
-const data = await client.callcontract("testAddress", ["aaa", "bbb", "ccc"]);
+const data = await client.callcontract("testAddress", [
+  ...ArgsForExecuteContract,
+]);
 ```
 
 - [`getbestblockhash`](https://bitcoin.org/en/developer-reference#getbestblockhash)

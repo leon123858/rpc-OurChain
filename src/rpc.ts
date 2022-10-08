@@ -425,13 +425,28 @@ export class RPCClient extends RESTClient {
 
   /**
    * @description Returns the obj contain contract address in the block
+   * @contractPath the path to install contract origin file in web
+   * @args the arguments for contract to init the state
+   * @return the object include contractAddress
+   * @example
+   * const result = await deploycontract("https://samplestorage/samplecontract.c",["initArg1","initArg2"])
+   * console.log(result)
+   * // { "txid" : "[txid]" , "contract address" : "[contract_address]"}
    */
-  deploycontract(contractPath: string) {
+  deploycontract(contractPath: string, args?: string[]) {
+    if (args) return this.rpc("deploycontract", [contractPath, ...args]);
     return this.rpc("deploycontract", [contractPath]);
   }
 
   /**
    * @description execute contract in block
+   * @contractAddress the address of contract, get by deploycontract
+   * @args the arguments for contract
+   * @return the txid for contract result
+   * @example
+   * const result = await callcontract("contract address",["Arg1","Arg2"])
+   * console.log(result)
+   * // { "txid" : "[txid]" }
    */
   callcontract(contractAddress: string, args: string[]) {
     return this.rpc("callcontract", [contractAddress, ...args]);
