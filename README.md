@@ -42,6 +42,13 @@ const data = await client.deploycontract("testPath");
 const data = await client.deploycontract("testPath", [...ArgsForInitContract]);
 ```
 
+- [`dumpcontractmessage`](wait to someone provide)
+  more information can read jsdoc for this method
+
+```javascript
+const result = await dumpcontractmessage("txid of contract");
+```
+
 - [`callcontract`](https://hackmd.io/Bo8C0LogQfmq_eSuOExr0w?view)
   more information can read jsdoc for this method
 

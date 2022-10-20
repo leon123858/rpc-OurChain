@@ -202,6 +202,22 @@ suite("RPCClient", () => {
       const data = await client.deploycontract("testPath");
       assert.deepStrictEqual(data, result);
     });
+    test(".dumpcontractmessage()", async () => {
+      const request = {
+        params: ["test txid"],
+        method: "dumpcontractmessage",
+        id,
+        jsonrpc,
+      };
+      const result = "string of contract";
+      nock(uri)
+        .post("/", request)
+        .times(1)
+        .basicAuth(auth)
+        .reply(200, { result, error, id });
+      const data = await client.dumpcontractmessage("test txid");
+      assert.deepStrictEqual(data, result);
+    });
     test(".callcontract()", async () => {
       const request = {
         params: ["testAddress", "aaa", "bbb", "ccc"],

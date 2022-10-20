@@ -424,6 +424,19 @@ export class RPCClient extends RESTClient {
   }
 
   /**
+   * @description Returns the string in contracts message
+   * @contractTxid the contract's txid
+   * @return the message for contract
+   * @example
+   * const result = await dumpcontractmessage("1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d")
+   * console.log(result)
+   * // "string for this contract message"
+   */
+  dumpcontractmessage(contractTxid: string) {
+    return this.rpc("dumpcontractmessage", [contractTxid]);
+  }
+
+  /**
    * @description Returns the obj contain contract address in the block
    * @contractPath the path to install contract origin file in web
    * @args the arguments for contract to init the state
